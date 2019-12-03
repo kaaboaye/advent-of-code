@@ -110,7 +110,7 @@ fn read_input(path: &str) -> Vec<Vec<Move>> {
 }
 
 fn wire_from_moves(moves: &Vec<Move>) -> HashSet<Point> {
-    let mut wire = HashSet::with_capacity(moves.len() * 5);
+    let mut wire = HashSet::with_capacity(moves.len() * 50);
     let mut cursor = point(0, 0);
 
     moves.iter().for_each(|movement| {
