@@ -1,5 +1,9 @@
 use std::{fs::read_to_string, str::FromStr};
 
+trait Score {
+    fn score(&self) -> u32;
+}
+
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 enum Move {
     Rock,
@@ -7,7 +11,7 @@ enum Move {
     Scissors,
 }
 
-impl Move {
+impl Score for Move {
     fn score(&self) -> u32 {
         match self {
             Move::Rock => 1,
@@ -23,7 +27,7 @@ enum Outcome {
     Victory,
 }
 
-impl Outcome {
+impl Score for Outcome {
     fn score(&self) -> u32 {
         match self {
             Outcome::Defeat => 0,
@@ -35,7 +39,7 @@ impl Outcome {
 
 struct Game(Move, Outcome);
 
-impl Game {
+impl Score for Game {
     fn score(&self) -> u32 {
         let Game(_, outcome) = self;
 
